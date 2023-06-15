@@ -1,0 +1,38 @@
+MGMT|0,0,0,0|False|
+START:0 empty 0,0
+PLAY:0 empty 0,0
+
+|START:0|
+set self funcs []
+set self state PLAY
+
+|PLAY:0|
+set self length len self.funcs
+for i_ range self.length
+    exec self.funcs at 0
+    remove self.funcs self.funcs at 0
+endfor
+
+
+|trianglesLow|
+set trianglespawner2 state SPAWN
+set trianglespawner3 state SPAWN
+
+|trianglesMid|
+set trianglespawner1 state SPAWN
+set trianglespawner2 state SPAWN
+set trianglespawner5 state SPAWN
+set trianglespawner6 state SPAWN
+set trianglespawner9 state SPAWN
+
+|trianglesHigh|
+set trianglespawner0 state SPAWN
+set trianglespawner1 state SPAWN
+set trianglespawner2 state SPAWN
+set trianglespawner3 state SPAWN
+set trianglespawner4 state SPAWN
+set trianglespawner5 state SPAWN
+set trianglespawner6 state SPAWN
+set trianglespawner7 state SPAWN
+set trianglespawner8 state SPAWN
+set trianglespawner9 state SPAWN

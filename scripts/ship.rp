@@ -1,5 +1,6 @@
 SHIP|0,0,0,0|False|
 START:0 shipstraight0 0,0
+WAIT:0 shipstraight0 0,0
 FLY:0 shipstraight0 0,0
 FLY:3 shipstraight1 0,0
 FLY:6 shipstraight2 0,0
@@ -12,12 +13,14 @@ FLYRIGHT:6 shipright2 0,0
 BROKE:0 shipbreak0 0,0
 
 |START:0|
-set self state FLY
+set self state WAIT
+set self startx self.x
+set self starty self.y
 set self frame 0
 set self _input_name PLAYER1
 set self regspeed 6
 set self slowspeed 2
-set self physics 1
+set self tangible 1
 set self smokenum 0
 set self smokemax 8
 set self smokecounter 0
@@ -34,6 +37,14 @@ set self explodenum 0
 set self explodemax 8
 set self explodecounter 0
 set self explodefreq 8
+set self frame_name ROOT
+
+|WAIT:0|
+exec updateSmoke
+
+|WAIT:30|
+exec updateSmoke
+set self state FLY
 
 |FLY:0|
 exec applyController

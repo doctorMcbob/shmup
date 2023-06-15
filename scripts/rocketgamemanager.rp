@@ -1,0 +1,107 @@
+MGMT|0,0,0,0|False|
+START:0 empty 0,0
+PLAY0:0 empty 0,0
+PLAY1:0 empty 0,0
+PLAY2:0 empty 0,0
+PLAY3:0 empty 0,0
+PLAY4:0 empty 0,0
+PLAY5:0 empty 0,0
+
+|START:0|
+set self level 0
+set self state PLAY + self.level
+set self frame 0
+
+|PLAY0:0|
+exec checkRestart
+
+|PLAY0:60|
+add rocketspawnmanager0.funcs trianglesLow
+exec checkRestart
+
+|PLAY0:62|
+exec checkContinue
+exec checkRestart
+
+|PLAY1:0|
+exec checkRestart
+
+|PLAY1:60|
+add rocketspawnmanager0.funcs trianglesMid
+exec checkRestart
+
+|PLAY1:62|
+exec checkContinue
+exec checkRestart
+
+|PLAY2:0|
+exec checkRestart
+
+|PLAY2:60|
+add rocketspawnmanager0.funcs trianglesHigh
+exec checkRestart
+
+|PLAY2:62|
+exec checkContinue
+exec checkRestart
+
+|PLAY3:60|
+view ROOT root
+exec reset
+
+|checkContinue|
+set self skip 0
+for i_ range 10
+    set self calc trianglespawner + i_
+    set self calc self.calc.spawnname
+    if exists self.calc
+        set self skip 1
+        break
+    endif
+endfor
+if self.skip
+    break
+endif
+set self level self.level + 1
+set self state PLAY + self.level
+set self frame 0
+
+|checkRestart|
+set self calc ship0.frame > 90
+if ship0.state == BROKE and self.calc
+    view ROOT root
+    exec reset
+endif
+
+|reset|
+set ship0 state WAIT
+set ship0 frame 0
+set ship0 x ship0.startx
+set ship0 y ship0.starty
+set ship0 level 0
+
+for i_ range ship0.bulletmax
+    set self _name ship0bullet + i_
+    if exists self._name
+        set self._name state BYE
+    endif
+endfor
+
+for i_ range 10
+    set self calc trianglespawner + i_
+    set self calc self.calc.spawnname
+    if exists self.calc
+        set self.calc state BYE
+        break
+    endif
+endfor
+
+set platformrockethudL0 x platformrockethudL0.startx
+set platformrockethudL0 y platformrockethudL0.starty
+set platformrockethudL0 shift 0
+set platformrockethudR0 x platformrockethudR0.startx
+set platformrockethudR0 y platformrockethudR0.starty
+set platformrockethudR0 shift 0
+
+set self frame 0
+set self state START
