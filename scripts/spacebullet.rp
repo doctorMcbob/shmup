@@ -1,0 +1,95 @@
+BULLET|0,0,0,0|False|
+START:0 empty 0,0
+TINY:0 tinybullet 0,0
+BALL:0 bulletball 0,0
+SQUIG:0 bulletflat 0,0
+SQUIG:5 bulletsquig 0,0
+BEAM:0 beam0 -32,0
+BEAM:3 beam1 -32,0
+CROSS:0 bulletplus 0,0
+CROSS:5 bulletx 0,0
+SHOT:0 playershot0 0,0
+SHOT:3 playershot1 0,0
+SHOT:5 playershot2 0,0
+SHOT:8 playershot3 0,0
+BYE:0 empty 0,0
+
+|START:0|
+set self physics 1
+hitboxes spacebullet
+hurtboxes spacebullet
+set self counter 150
+
+|BALL:0|
+exec updateCounter
+
+|TINY:0|
+exec updateCounter
+
+|SQUIG:0|
+exec updateCounter
+
+|CROSS:0|
+exec updateCounter
+
+|BEAM:0|
+exec updateCounter
+
+|SHOT:0|
+exec updateCounter
+
+|SQUIG:10|
+exec updateCounter
+set self direction self.direction * -1
+set self frame 0
+
+|CROSS:10|
+exec updateCounter
+set self frame 0
+
+|BEAM:6|
+exec updateCounter
+set self frame 0
+
+|SHOT:11|
+exec updateCounter
+set self direction self.direction * -1
+set self frame 5
+
+|BYE:0|
+goodbye
+
+|HIT|
+if self.name == ship0
+    set self calc related.state == BEAM
+    if related.state == SHOT or self.calc
+        break
+    endif
+    if self.level == 0
+        set self state BROKE
+        set self x_vel 0
+        set self y_vel 0
+    endif
+    if self.level != 0
+        set ship0 level 0
+    endif
+endif
+if self.name != ship0
+    if self.hp
+        set self hp self.hp - 1
+    endif
+    if self.hp == 0
+        set self state BROKE
+        set self x_vel 0
+        set self y_vel 0
+    endif
+endif
+set self hitname self.name + Hit!
+create fxhit0 self.hitname related.x related.y 
+set related state BYE
+
+|updateCounter|
+set self counter self.counter - 1
+if self.counter == 0
+    set self state BYE
+endif
