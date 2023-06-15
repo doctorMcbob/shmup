@@ -33,6 +33,10 @@ exec updateCounter
 exec updateCounter
 
 |BEAM:0|
+back
+exec updateCounter
+
+|BEAM:1|
 exec updateCounter
 
 |SHOT:0|
@@ -49,7 +53,7 @@ set self frame 0
 
 |BEAM:6|
 exec updateCounter
-set self frame 0
+set self frame 1
 
 |SHOT:11|
 exec updateCounter

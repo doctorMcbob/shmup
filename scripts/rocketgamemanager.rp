@@ -58,7 +58,6 @@ exec checkRestart
 |PLAY3:55|
 add rocketspawnmanager0.funcs trianglesHigh
 exec checkRestart
-exec checkRestart
 
 |PLAY3:57|
 exec checkContinue
@@ -85,6 +84,7 @@ endif
 set self level self.level + 1
 set self state PLAY + self.level
 set self frame 0
+set bgscroller0 scroll_y bgscroller0.scroll_y - 1
 
 |checkRestart|
 set self calc ship0.frame > 90
@@ -95,6 +95,8 @@ if ship0.state == BROKE and self.calc
 endif
 
 |reset|
+set bgscroller0 scroll_y 0
+
 set ship0 state WAIT
 set ship0 frame 0
 set ship0 x ship0.startx

@@ -74,7 +74,7 @@ SPRITESHEETS = {'background.png': {'space': ((0, 0), (256, 256))},
                'triangleman3': ((864, 0), (48, 48)),
                'triangleman4': ((1008, 0), (48, 48)),
                'triangleman5': ((1152, 0), (48, 48))}}
-SPRITEMAPS = {'bgscroller': {'START:0': 'empty'},
+SPRITEMAPS = {'bgscroller': {'SCROLL:0': 'empty', 'START:0': 'empty'},
  'bgscrollerleft': {'START:0': 'empty'},
  'bulletclear': {'START:0': 'empty'},
  'explode': {'BALL:0': 'fireball1',
