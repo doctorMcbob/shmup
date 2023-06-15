@@ -60,7 +60,8 @@ set self frame 5
 goodbye
 
 |HIT|
-if self.name == ship0
+set self calc self.name == ship1
+if self.name == ship0 or self.calc
     set self calc related.state == BEAM
     if related.state == SHOT or self.calc
         break
@@ -80,6 +81,11 @@ if self.name != ship0
         set self hp self.hp - 1
     endif
     if self.hp == 0
+        set ship0 powerupcounter ship0.powerupcounter - 1
+        if ship0.powerupcounter == 0
+            create powerup0 gamePowerUp self.x self.y
+            set ship0 powerupcounter ship0.powerupcountermax
+        endif
         set self state BROKE
         set self frame 0
         set self x_vel 0

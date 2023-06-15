@@ -12,7 +12,7 @@ BYE:0 empty 0,0
 |START:0|
 set self state SHIP
 set self bulletfreq 30
-set self bulletcounter 0
+set self bulletcounter 28
 set self bulletnum 0
 set self bulletmax 8
 set self shotspeed 6

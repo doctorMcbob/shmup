@@ -15,37 +15,57 @@ set self frame 0
 |PLAY0:0|
 exec checkRestart
 
-|PLAY0:60|
+|PLAY0:40|
 add rocketspawnmanager0.funcs trianglesLow
 exec checkRestart
 
-|PLAY0:62|
+|PLAY0:42|
 exec checkContinue
 exec checkRestart
 
 |PLAY1:0|
 exec checkRestart
 
-|PLAY1:60|
+|PLAY1:40|
 add rocketspawnmanager0.funcs trianglesMid
 exec checkRestart
 
-|PLAY1:62|
+|PLAY1:42|
 exec checkContinue
 exec checkRestart
 
 |PLAY2:0|
 exec checkRestart
 
-|PLAY2:60|
+|PLAY2:40|
 add rocketspawnmanager0.funcs trianglesHigh
 exec checkRestart
 
-|PLAY2:62|
+|PLAY2:42|
 exec checkContinue
 exec checkRestart
 
-|PLAY3:60|
+|PLAY3:0|
+exec checkRestart
+
+|PLAY3:40|
+add rocketspawnmanager0.funcs trianglesMid
+exec checkRestart
+
+|PLAY3:42|
+exec checkRestart
+
+|PLAY3:55|
+add rocketspawnmanager0.funcs trianglesHigh
+exec checkRestart
+exec checkRestart
+
+|PLAY3:57|
+exec checkContinue
+exec checkRestart
+
+|PLAY4:60|
+set ship1 state WAIT
 view ROOT root
 exec reset
 
@@ -70,6 +90,7 @@ set self frame 0
 set self calc ship0.frame > 90
 if ship0.state == BROKE and self.calc
     view ROOT root
+    set ship1 state WAIT
     exec reset
 endif
 
@@ -78,7 +99,10 @@ set ship0 state WAIT
 set ship0 frame 0
 set ship0 x ship0.startx
 set ship0 y ship0.starty
+set ship0 x_vel 0
+set ship0 y_vel 0
 set ship0 level 0
+set ship0 powerupcounter ship0.powerupcountermax
 
 for i_ range ship0.bulletmax
     set self _name ship0bullet + i_

@@ -38,6 +38,8 @@ set self explodemax 8
 set self explodecounter 0
 set self explodefreq 8
 set self frame_name ROOT
+set self powerupcounter 6
+set self powerupcountermax 6
 
 |WAIT:0|
 exec updateSmoke
