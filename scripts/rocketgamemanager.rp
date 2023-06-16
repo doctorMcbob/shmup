@@ -27,7 +27,8 @@ exec checkRestart
 exec checkRestart
 
 |PLAY1:40|
-add rocketspawnmanager0.funcs trianglesMid
+add rocketspawnmanager0.funcs trianglesLow
+add rocketspawnmanager0.funcs beedlesLow
 exec checkRestart
 
 |PLAY1:42|
@@ -38,7 +39,7 @@ exec checkRestart
 exec checkRestart
 
 |PLAY2:40|
-add rocketspawnmanager0.funcs trianglesHigh
+add rocketspawnmanager0.funcs trianglesMid
 exec checkRestart
 
 |PLAY2:42|
@@ -56,10 +57,17 @@ exec checkRestart
 exec checkRestart
 
 |PLAY3:55|
-add rocketspawnmanager0.funcs trianglesHigh
+add rocketspawnmanager0.funcs trianglesMidAlt
 exec checkRestart
 
 |PLAY3:57|
+exec checkContinue
+
+|PLAY3:60|
+add rocketspawnmanager0.funcs beedlesMid
+exec checkRestart
+
+|PLAY3:62|
 exec checkContinue
 exec checkRestart
 

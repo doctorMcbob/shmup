@@ -13,6 +13,35 @@ for i_ range self.length
     remove self.funcs self.funcs at 0
 endfor
 
+|beedlesLow|
+set beedlespawner0 state SPAWN
+set beedlespawner1 state SPAWN
+
+|beedlesMid|
+set beedlespawner0 state SPAWN
+set beedlespawner2 state SPAWN
+set beedlespawner4 state SPAWN
+set beedlespawner6 state SPAWN
+set beedlespawner8 state SPAWN
+
+|beedlesMidAlt|
+set beedlespawner1 state SPAWN
+set beedlespawner3 state SPAWN
+set beedlespawner5 state SPAWN
+set beedlespawner7 state SPAWN
+set beedlespawner9 state SPAWN
+
+|beedlesHigh|
+set beedlespawner0 state SPAWN
+set beedlespawner2 state SPAWN
+set beedlespawner4 state SPAWN
+set beedlespawner6 state SPAWN
+set beedlespawner8 state SPAWN
+set beedlespawner1 state SPAWN
+set beedlespawner3 state SPAWN
+set beedlespawner5 state SPAWN
+set beedlespawner7 state SPAWN
+set beedlespawner9 state SPAWN
 
 |trianglesLow|
 set trianglespawner2 state SPAWN
@@ -24,6 +53,13 @@ set trianglespawner2 state SPAWN
 set trianglespawner5 state SPAWN
 set trianglespawner6 state SPAWN
 set trianglespawner9 state SPAWN
+
+|trianglesMidAlt|
+set trianglespawner0 state SPAWN
+set trianglespawner3 state SPAWN
+set trianglespawner4 state SPAWN
+set trianglespawner7 state SPAWN
+set trianglespawner8 state SPAWN
 
 |trianglesHigh|
 set trianglespawner0 state SPAWN
