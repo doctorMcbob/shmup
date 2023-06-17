@@ -178,7 +178,7 @@ int collision_with(Actor *a1, Actor *a2, World *world, int debug) {
   if (scriptKey != -1) {
     int resolution =
         resolve_script(scriptKey, a2, a1, world, debug, -1, -1, -1, -1, -1, 0);
-    if (resolution < 0)
+    if (resolution < 0) 
       return resolution;
   }
   return 0;
@@ -500,7 +500,9 @@ int update_actor(int actorKey, int worldKey, int debug) {
     return 0;
   if (actor->updated) {
     if ((actor->physics || actor->tangible) && world_has(world, actorKey)) {
-      collision_check(actor, world, debug);
+      int resolution = collision_check(actor, world, debug);
+      if (resolution < 0)
+        return resolution;
     }
     return 0;
   }
@@ -516,7 +518,9 @@ int update_actor(int actorKey, int worldKey, int debug) {
   }
   float x_flag = actor->x_vel, y_flag = actor->y_vel;
   if (actor->physics || actor->tangible) {
-    collision_check(actor, world, debug);
+    int resolution = collision_check(actor, world, debug);
+    if (resolution < 0)
+      return resolution;
     actor->ECB.x += _floor(actor->x_vel);
     actor->ECB.y += _floor(actor->y_vel);
   }
