@@ -26,7 +26,7 @@ set self smokemax 8
 set self smokecounter 0
 set self smokefreq 8
 set self bulletnum 0
-set self bulletmax 64
+set self bulletmax 80
 set self bulletcounter 0
 set self bulletfreq 10
 set self shotspeed -8

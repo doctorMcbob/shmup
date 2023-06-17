@@ -18,7 +18,7 @@ BYE:0 empty 0,0
 set self physics 1
 hitboxes spacebullet
 hurtboxes spacebullet
-set self counter 150
+set self counter 200
 
 |BALL:0|
 exec updateCounter
@@ -81,6 +81,11 @@ if self.name == ship0 or self.calc
     endif
 endif
 if self.name != ship0
+    set self calc1 related.state == BEAM
+    set self calc2 related.state == SHOT 
+    if not self.calc1 nor self.calc2
+       break
+    endif
     if self.hp
         set self hp self.hp - 1
     endif

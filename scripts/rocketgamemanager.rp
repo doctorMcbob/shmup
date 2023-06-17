@@ -85,10 +85,19 @@ for i_ range 10
         set self skip 1
         break
     endif
+
+    set self calc beedleshipspawner + i_
+    set self calc self.calc.spawnname
+    if exists self.calc
+        set self skip 1
+        break
+    endif
 endfor
+
 if self.skip
     break
 endif
+
 set self level self.level + 1
 set self state PLAY + self.level
 set self frame 0
@@ -126,7 +135,12 @@ for i_ range 10
     set self calc self.calc.spawnname
     if exists self.calc
         set self.calc state BYE
-        break
+    endif
+
+    set self calc beedleshipspawner + i_
+    set self calc self.calc.spawnname
+    if exists self.calc
+        set self.calc state BYE
     endif
 endfor
 

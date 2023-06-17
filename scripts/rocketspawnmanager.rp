@@ -14,34 +14,34 @@ for i_ range self.length
 endfor
 
 |beedlesLow|
-set beedlespawner0 state SPAWN
-set beedlespawner1 state SPAWN
+set beedleshipspawner0 state SPAWN
+set beedleshipspawner1 state SPAWN
 
 |beedlesMid|
-set beedlespawner0 state SPAWN
-set beedlespawner2 state SPAWN
-set beedlespawner4 state SPAWN
-set beedlespawner6 state SPAWN
-set beedlespawner8 state SPAWN
+set beedleshipspawner0 state SPAWN
+set beedleshipspawner3 state SPAWN
+set beedleshipspawner4 state SPAWN
+set beedleshipspawner7 state SPAWN
+set beedleshipspawner8 state SPAWN
 
 |beedlesMidAlt|
-set beedlespawner1 state SPAWN
-set beedlespawner3 state SPAWN
-set beedlespawner5 state SPAWN
-set beedlespawner7 state SPAWN
-set beedlespawner9 state SPAWN
+set beedleshipspawner1 state SPAWN
+set beedleshipspawner2 state SPAWN
+set beedleshipspawner5 state SPAWN
+set beedleshipspawner6 state SPAWN
+set beedleshipspawner9 state SPAWN
 
 |beedlesHigh|
-set beedlespawner0 state SPAWN
-set beedlespawner2 state SPAWN
-set beedlespawner4 state SPAWN
-set beedlespawner6 state SPAWN
-set beedlespawner8 state SPAWN
-set beedlespawner1 state SPAWN
-set beedlespawner3 state SPAWN
-set beedlespawner5 state SPAWN
-set beedlespawner7 state SPAWN
-set beedlespawner9 state SPAWN
+set beedleshipspawner0 state SPAWN
+set beedleshipspawner2 state SPAWN
+set beedleshipspawner4 state SPAWN
+set beedleshipspawner6 state SPAWN
+set beedleshipspawner8 state SPAWN
+set beedleshipspawner1 state SPAWN
+set beedleshipspawner3 state SPAWN
+set beedleshipspawner5 state SPAWN
+set beedleshipspawner7 state SPAWN
+set beedleshipspawner9 state SPAWN
 
 |trianglesLow|
 set trianglespawner2 state SPAWN
