@@ -1,0 +1,16 @@
+SHOT|0,0,0,0|False|
+START:0 bballshot0 0,0
+BBALL:0 bballshot0 0,0
+BBALL:3 bballshot1 0,0
+BBALL:5 bballshot1 0,0
+BBALL:6 bballshot1 0,0
+
+|START:0|
+set self state BBALL
+set self physics 1
+
+|BBALL:0|
+
+|BBALL:16|
+set self frame 0
+exec BBALL:0

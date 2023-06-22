@@ -1,0 +1,23 @@
+SHIP|0,0,0,0|False|
+START:0 destroyer0 0,0
+
+|START:0|
+set self state FLY
+set self bulletfreq 5
+set self bulletcounter 4
+set self bulletnum 0
+set self bulletmax 21
+set self shotspeed 3
+set self smokenum 0
+set self smokemax 8
+set self smokecounter 0
+set self smokefreq 8
+set self flydir FLYLEFT
+set self speed 2
+
+set self explodenum 0
+set self explodemax 8
+set self explodecounter 0
+set self explodefreq 8
+set self hp 6
+

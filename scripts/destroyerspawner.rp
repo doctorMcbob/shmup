@@ -1,0 +1,15 @@
+MGMT|0,0,0,0|False|
+START:0 empty 0,0
+WAIT:0 empty 0,0
+SPAWN:0 empty 0,0
+
+|START:0|
+set self state WAIT
+set self spawnname self.name + destroyer
+
+|SPAWN:0|
+set self state WAIT
+if exists self.spawnname
+    break
+endif
+create destroyer0 self.spawnname self.x self.y 

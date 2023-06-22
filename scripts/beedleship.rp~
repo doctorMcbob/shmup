@@ -1,0 +1,63 @@
+SHIP|0,0,0,0|False|
+START:0 beedleship0 0,0
+FLY:0 beedleship0 0,0
+FLYLEFT:0 beedleshipleft0 0,0
+FLYRIGHT:0 beedleshipright0 0,0
+
+|START:0|
+set self physics 1
+set self state FLY
+set self smokenum 0
+set self smokemax 8
+set self smokecounter 0
+set self smokefreq 8
+set self flydir FLYLEFT
+set self speed 3
+set self hp 6
+
+|FLY:0|
+exec updateSmoke
+set self x_vel 0
+
+|FLY:12|
+exec updateSmoke
+set self state self.flydir
+print self frame 0
+
+|FLYLEFT:0|
+exec updateSmoke
+set self x_vel self.speed * -1
+
+|FLYLEFT:12|
+exec updateSmoke
+print self frame 0
+set self state FLY
+
+|FLYRIGHT:0|
+exec updateSmoke
+set self x_vel self.speed
+
+|FLYRIGHT:12|
+exec updateSmoke
+print self frame 0
+set self state FLY
+
+|XCOLLIDE|
+set self calc self.flydir
+if self.calc == FLYLEFT
+    set self flydir FLYRIGHT
+endif
+if self.calc == FLYRIGHT
+    set self flydir FLYLEFT
+endif
+
+|updateSmoke|
+if self.smokecounter == self.smokefreq
+    set self smokecounter 0
+    create smokeball0 self.name + smokeball + self.smokenum self.x + RAND? + RAND? - RAND? - RAND? self.h * 0.75 + self.y
+    set self smokenum self.smokenum + 1
+    if self.smokenum == self.smokemax
+        set self smokenum 0
+    endif
+endif
+set self smokecounter self.smokecounter + 1
