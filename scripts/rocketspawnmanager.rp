@@ -72,3 +72,23 @@ set trianglespawner6 state SPAWN
 set trianglespawner7 state SPAWN
 set trianglespawner8 state SPAWN
 set trianglespawner9 state SPAWN
+
+|destroyerLow|
+set destroyerspawner0 state SPAWN
+
+|destroyerLowAlt|
+set destroyerspawner1 state SPAWN
+
+|destroyerMid|
+set destroyerspawner0 state SPAWN
+set destroyerspawner1 state SPAWN
+
+|destroyerMidAlt|
+set destroyerspawner2 state SPAWN
+set destroyerspawner3 state SPAWN
+
+|destroyerHigh|
+set destroyerspawner0 state SPAWN
+set destroyerspawner1 state SPAWN
+set destroyerspawner2 state SPAWN
+set destroyerspawner3 state SPAWN

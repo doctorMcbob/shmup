@@ -297,6 +297,7 @@ int collision_check(Actor *actor, World *world, int debug) {
       moved.w = actor->ECB.w;
       moved.h = actor->ECB.h;
       move(&moved, actor->x_vel, 0);
+      Actor *actor3;
       for (int idx = 0; idx < WORLD_BUFFER_SIZE; idx++) {
         if (buffer[idx] == -1)
           break;
@@ -304,17 +305,24 @@ int collision_check(Actor *actor, World *world, int debug) {
         if (actor->name == buffer[idx])
           continue;
 
-        Actor *actor3 = get_actor(buffer[idx]);
+        actor3 = get_actor(buffer[idx]);
         if (actor3 == NULL || !actor3->tangible)
           continue;
         if (actor->tangible == 0 && actor3->platform == 0)
           continue;
         if (SDL_HasIntersection(&moved, &actor3->ECB)) {
           check = 0;
+          break;
         }
       }
       if (check == 0) {
-        actor->x_vel += direction;
+        int dx;
+        if (direction == 1) {
+          dx = actor3->ECB.x + actor3->ECB.w - moved.x;
+        } else {
+          dx = (moved.x + moved.w - actor3->ECB.x) * -1;
+        }
+        actor->x_vel += dx;
         actor->x_vel = _floor(actor->x_vel);
       }
     }
@@ -388,6 +396,7 @@ int collision_check(Actor *actor, World *world, int debug) {
       moved.w = actor->ECB.w;
       moved.h = actor->ECB.h;
       move(&moved, 0, actor->y_vel);
+      Actor *actor3;
       for (int idx = 0; idx < WORLD_BUFFER_SIZE; idx++) {
         if (world->actors[idx] == -1)
           break;
@@ -395,17 +404,24 @@ int collision_check(Actor *actor, World *world, int debug) {
         if (actor->name == world->actors[idx])
           continue;
 
-        Actor *actor3 = get_actor(world->actors[idx]);
+        actor3 = get_actor(world->actors[idx]);
         if (actor3 == NULL || !actor3->tangible)
           continue;
         if (actor->tangible == 0 && actor3->platform == 0)
           continue;
         if (SDL_HasIntersection(&moved, &actor3->ECB)) {
           check = 0;
+          break;
         }
       }
       if (check == 0) {
-        actor->y_vel += direction;
+        int dx;
+        if (direction == 1) {
+          dx = actor3->ECB.y + actor3->ECB.h - moved.y;
+        } else {
+          dx = (moved.y + moved.h - actor3->ECB.y) * -1;
+        }
+        actor->y_vel += dx;
         actor->y_vel = _floor(actor->y_vel);
       }
     }

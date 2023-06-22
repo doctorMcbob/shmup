@@ -39,7 +39,7 @@ exec checkRestart
 exec checkRestart
 
 |PLAY2:40|
-add rocketspawnmanager0.funcs trianglesMid
+add rocketspawnmanager0.funcs destroyerMid
 exec checkRestart
 
 |PLAY2:42|
@@ -54,24 +54,53 @@ add rocketspawnmanager0.funcs trianglesMid
 exec checkRestart
 
 |PLAY3:42|
+exec checkContinue
 exec checkRestart
 
-|PLAY3:55|
+|PLAY4:0|
+exec checkRestart
+
+|PLAY4:40|
+add rocketspawnmanager0.funcs trianglesMid
+exec checkRestart
+
+|PLAY4:42|
+exec checkRestart
+
+|PLAY4:55|
 add rocketspawnmanager0.funcs trianglesMidAlt
 exec checkRestart
 
-|PLAY3:57|
+|PLAY4:57|
 exec checkContinue
 
-|PLAY3:60|
+|PLAY4:60|
 add rocketspawnmanager0.funcs beedlesMid
 exec checkRestart
 
-|PLAY3:62|
+|PLAY4:62|
 exec checkContinue
 exec checkRestart
 
-|PLAY4:60|
+|PLAY5:0|
+exec checkRestart
+
+|PLAY5:40|
+add rocketspawnmanager0.funcs trianglesMid
+exec checkRestart
+
+|PLAY5:42|
+exec checkRestart
+
+|PLAY5:55|
+add rocketspawnmanager0.funcs destroyerHigh
+exec checkRestart
+
+|PLAY5:57|
+exec checkContinue
+exec checkRestart
+
+|PLAY6:60|
 set ship1 state WAIT
 view ROOT root
 exec reset
@@ -87,6 +116,15 @@ for i_ range 10
     endif
 
     set self calc beedleshipspawner + i_
+    set self calc self.calc.spawnname
+    if exists self.calc
+        set self skip 1
+        break
+    endif
+endfor
+
+for i_ range 4
+    set self calc destroyerspawner + i_
     set self calc self.calc.spawnname
     if exists self.calc
         set self skip 1
@@ -138,6 +176,14 @@ for i_ range 10
     endif
 
     set self calc beedleshipspawner + i_
+    set self calc self.calc.spawnname
+    if exists self.calc
+        set self.calc state BYE
+    endif
+endfor
+
+for i_ range 4
+    set self calc destroyerspawner + i_
     set self calc self.calc.spawnname
     if exists self.calc
         set self.calc state BYE

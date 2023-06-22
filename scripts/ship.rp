@@ -1,6 +1,12 @@
 SHIP|0,0,0,0|False|
 START:0 shipstraight0 0,0
 WAIT:0 shipstraight0 0,0
+CRASH:0 shipbreak0 0,0
+CRASH:10 empty 0,0
+CRASH:12 shipbreak0 0,0
+CRASH:20 empty 0,0
+CRASH:22 shipbreak0 0,0
+CRASH:30 empty 0,0
 FLY:0 shipstraight0 0,0
 FLY:3 shipstraight1 0,0
 FLY:6 shipstraight2 0,0
@@ -40,6 +46,14 @@ set self explodefreq 8
 set self frame_name ROOT
 set self powerupcounter 6
 set self powerupcountermax 6
+
+|CRASH:0|
+exec applyController
+set self state CRASH
+
+|CRASH:32|
+set self state FLY
+set self frame 0
 
 |WAIT:0|
 exec updateSmoke

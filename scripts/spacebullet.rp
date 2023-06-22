@@ -63,6 +63,9 @@ set self frame 5
 |BYE:0|
 goodbye
 
+|XCOLLISION|
+goodbye
+
 |HIT|
 set self calc self.name == ship1
 if self.name == ship0 or self.calc
@@ -78,6 +81,11 @@ if self.name == ship0 or self.calc
     endif
     if self.level != 0
         set ship0 level 0
+        set self state CRASH
+        set self frame 0
+        set self x_vel 0
+        set self y_vel 0
+
     endif
 endif
 if self.name != ship0
