@@ -206,7 +206,7 @@ for i_ range 4
     endif
 endfor
 
-if exists bossspawner0.spawnname
+if exists bosspawner0.spawnname
     set bosspawner0.spawnname state BYE
 endif
 

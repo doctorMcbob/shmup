@@ -15,24 +15,39 @@ create bossarms0 self.armsname self.x + 8 self.y + self.h
 set self.armsname bodyname self.bodyname
 set self state HEAD0
 set self physics 1
+set self tangible 1
 set self counter 0
 set self done 0
+set self atkdone 0
+set self atkcounter 0
 hurtboxes rocketboss
 hitboxes rocketboss
 set self hp 90
-
+set self speed 4
 set self movfuncs []
 add self.movfuncs leftright
-set self movfunc leftright
+add self.movfuncs center
+add self.movfuncs upsydownsy
+add self.movfuncs bounce
+set self movfunc choiceof self.movfuncs
+set self atkfuncs []
+add self.atkfuncs waveLeft
+add self.atkfuncs waveRight
+set self atkfunc choiceof self.atkfuncs
+set self bulletnum 0
+set self bulletmax 80
 
 |HEAD0:0|
 exec updateMovement
+exec updateAttack
 
 |HEAD1:0|
 exec updateMovement
+exec updateAttack
 
 |HEAD2:0|
 exec updateMovement
+exec updateAttack
 
 |BROKE:0|
 set self.armsname state BYE
@@ -58,12 +73,21 @@ if self.done == 1
     set self movfunc choiceof self.movfuncs
 endif
 
+|updateAttack|
+exec self.atkfunc
+if self.atkdone == 1
+    set self atkcounter 0
+    set self atkdone 0
+    set self atkfunc choiceof self.atkfuncs
+endif
+
 |wait|
 break
 
 |leftright|
 if self.counter == 0
-    set self x_vel -4
+    set self x_vel self.speed * -1
+    set self y_vel 0
     set self.armsname state SWAYLEFT
 endif
 if self.counter >= 270
@@ -73,16 +97,118 @@ if self.counter >= 270
 endif
 if self.xcollide == 1
     if self.armsname.state == SWAYLEFT
-        set self x_vel 4
+        set self x_vel self.speed
         set self.armsname state SWAYRIGHT
         set self xcollide 0
     endif
 endif
 if self.xcollide == 1
     if self.armsname.state == SWAYRIGHT
-        set self x_vel -4
+        set self x_vel self.speed * -1
         set self.armsname state SWAYLEFT
         set self xcollide 0
     endif
 endif
 set self counter self.counter + 1
+
+|upsydownsy|
+exec leftright
+if self.counter == 1
+    set self y_vel -6
+endif
+if self.y > bosspawner0.y
+    set self y_vel self.y_vel - 0.5
+endif
+if self.y < bosspawner0.y
+    set self y_vel self.y_vel + 0.5
+endif
+
+|center|
+set self x_vel bosspawner0.x - self.x / 10
+set self y_vel bosspawner0.y - self.y / 10
+if self.x_vel > 0
+    set self.armsname state SWAYRIGHT
+endif
+if self.x_vel < 0
+    set self.armsname state SWAYLEFT
+endif
+if abs self.y_vel == 0
+    set self.armsname state DOWN
+endif
+if abs self.x_vel == 0
+    if abs self.y_vel == 0
+        set self done 1
+    endif
+endif
+
+|bounce|
+if self.counter == 0
+    set self dx 1
+    set self dy 1
+    set self x_vel self.speed
+    set self y_vel self.speed
+endif
+if self.ycollide == 1
+    set self dy self.dy * -1
+    set self y_vel self.speed * self.dy
+endif
+if self.xcollide == 1
+    set self dx self.dx * -1
+    set self x_vel self.speed * self.dx
+endif
+if self.x_vel > 0
+    set self.armsname state SWAYRIGHT
+endif
+if self.x_vel < 0
+    set self.armsname state SWAYLEFT
+endif
+if self.counter >= 270
+    exec center
+endif
+set self counter self.counter + 1
+
+|waveLeft|
+if self.atkcounter % 4 == 0
+    set self bulname self.name + bullet + self.bulletnum
+    create spacebullet0 self.bulname self.w / 2 + self.x  self.y + self.h
+    set self.bulname state BALL
+    set self.bulname y_vel 0.5 * self.atkcounter + -20
+    if self.atkcounter < 40
+        set self.bulname x_vel -0.5 * self.atkcounter + 1
+    endif
+    if self.atkcounter >= 40
+        set self.bulname x_vel self.atkcounter - 40 * 0.5 + -19
+    endif
+
+    set self bulletnum self.bulletnum + 1
+    if self.bulletnum >= self.bulletmax
+        set self bulletnum 0
+    endif
+endif
+if self.atkcounter >= 80
+    set self atkdone 1
+endif
+set self atkcounter self.atkcounter + 1
+
+|waveRight|
+if self.atkcounter % 4 == 0
+    set self bulname self.name + bullet + self.bulletnum
+    create spacebullet0 self.bulname self.w / 2 + self.x  self.y + self.h
+    set self.bulname state BALL
+    set self.bulname y_vel 0.5 * self.atkcounter + -20
+    if self.atkcounter < 40
+        set self.bulname x_vel 0.5 * self.atkcounter + -1
+    endif
+    if self.atkcounter >= 40
+        set self.bulname x_vel self.atkcounter - 40 * -0.5 + 19
+    endif
+
+    set self bulletnum self.bulletnum + 1
+    if self.bulletnum >= self.bulletmax
+        set self bulletnum 0
+    endif
+endif
+if self.atkcounter >= 80
+    set self atkdone 1
+endif
+set self atkcounter self.atkcounter + 1
