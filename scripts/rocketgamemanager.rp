@@ -208,6 +208,8 @@ endfor
 
 if exists bosspawner0.spawnname
     set bosspawner0.spawnname state BYE
+    set bosspawner0.spawnname.bodyname state BYE
+    set bosspawner0.spawnname.armsname state BYE
 endif
 
 set platformrockethudL0 x platformrockethudL0.startx
