@@ -1,0 +1,88 @@
+BOSS|0,0,0,0|False|
+START:0 bosshead0 0,0
+HEAD0:0 bosshead0 0,0
+HEAD1:0 bosshead1 0,0
+HEAD2:0 bosshead2 0,0
+BROKE:0 empty 0,0
+BYE:0 empty 0,0
+
+|START:0|
+set self bodyname self.name + body
+create bossbody0 self.bodyname self.x + 8 self.y + self.h 
+set self.bodyname headname self.name
+set self armsname self.name + arms
+create bossarms0 self.armsname self.x + 8 self.y + self.h
+set self.armsname bodyname self.bodyname
+set self state HEAD0
+set self physics 1
+set self counter 0
+set self done 0
+hurtboxes rocketboss
+hitboxes rocketboss
+set self hp 90
+
+set self movfuncs []
+add self.movfuncs leftright
+set self movfunc leftright
+
+|HEAD0:0|
+exec updateMovement
+
+|HEAD1:0|
+exec updateMovement
+
+|HEAD2:0|
+exec updateMovement
+
+|BROKE:0|
+set self.armsname state BYE
+set self.bodyname state BYE
+set self state BYE
+
+|BYE:0|
+goodbye
+
+|XCOLLISION|
+set self xcollide 1
+
+|YCOLLISION|
+set self ycollide 1
+
+|updateMovement|
+exec self.movfunc
+set self xcollide 0
+set self ycollide 0
+if self.done == 1
+    set self counter 0
+    set self done 0
+    set self movfunc choiceof self.movfuncs
+endif
+
+|wait|
+break
+
+|leftright|
+if self.counter == 0
+    set self x_vel -4
+    set self.armsname state SWAYLEFT
+endif
+if self.counter >= 270
+    set self done 1
+    set self x_vel 0
+    set self.armsname state DOWN
+endif
+if self.xcollide == 1
+    if self.armsname.state == SWAYLEFT
+        set self x_vel 4
+        set self.armsname state SWAYRIGHT
+        set self xcollide 0
+    endif
+endif
+if self.xcollide == 1
+    if self.armsname.state == SWAYRIGHT
+        set self x_vel -4
+        set self.armsname state SWAYLEFT
+        set self xcollide 0
+    endif
+endif
+set self counter self.counter + 1

@@ -16,7 +16,8 @@ set self frame 0
 exec checkRestart
 
 |PLAY0:40|
-add rocketspawnmanager0.funcs trianglesLow
+add rocketspawnmanager0.funcs spawnBoss
+#add rocketspawnmanager0.funcs trianglesLow
 exec checkRestart
 
 |PLAY0:42|
@@ -100,7 +101,18 @@ exec checkRestart
 exec checkContinue
 exec checkRestart
 
-|PLAY6:60|
+|PLAY6:0|
+exec checkRestart
+
+|PLAY6:40|
+add rocketspawnmanager0.funcs spawnBoss
+exec checkRestart
+
+|PLAY6:42|
+exec checkRestart
+exec checkContinue
+
+|PLAY7:60|
 set ship1 state WAIT
 view ROOT root
 exec reset
@@ -131,6 +143,10 @@ for i_ range 4
         break
     endif
 endfor
+
+if exists bosspawner0.spawnname
+    set self skip 1
+endif
 
 if self.skip
     break
@@ -189,6 +205,10 @@ for i_ range 4
         set self.calc state BYE
     endif
 endfor
+
+if exists bossspawner0.spawnname
+    set bosspawner0.spawnname state BYE
+endif
 
 set platformrockethudL0 x platformrockethudL0.startx
 set platformrockethudL0 y platformrockethudL0.starty

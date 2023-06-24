@@ -92,3 +92,6 @@ set destroyerspawner0 state SPAWN
 set destroyerspawner1 state SPAWN
 set destroyerspawner2 state SPAWN
 set destroyerspawner3 state SPAWN
+
+|spawnBoss|
+set bosspawner0 state SPAWN
