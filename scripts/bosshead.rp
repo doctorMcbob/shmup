@@ -34,6 +34,8 @@ set self atkfuncs []
 add self.atkfuncs waveLeft
 add self.atkfuncs waveRight
 set self atkfunc choiceof self.atkfuncs
+set self atkfreq 30
+set self atkctdwn 0
 set self bulletnum 0
 set self bulletmax 80
 
@@ -74,21 +76,33 @@ if self.done == 1
 endif
 
 |updateAttack|
-exec self.atkfunc
-if self.atkdone == 1
-    set self atkcounter 0
-    set self atkdone 0
-    set self atkfunc choiceof self.atkfuncs
+if self.atkctdwn == 0
+    exec self.atkfunc
+    if self.atkdone == 1
+        set self atkcounter 0
+        set self atkdone 0
+        set self atkfunc choiceof self.atkfuncs
+        set self atkctdwn self.atkfreq
+    endif
+    break
 endif
-
-|wait|
-break
+if self.atkctdwn > 0
+    set self atkctdwn self.atkctdwn - 1
+    if self.atkctdwn < 10
+        set self.armsname state UP
+        break
+    endif
+    if self.atkctdwn < 20
+        set self.armsname state READY
+    endif
+endif
 
 |leftright|
 if self.counter == 0
     set self x_vel self.speed * -1
     set self y_vel 0
     set self.armsname state SWAYLEFT
+    set self dx 1
 endif
 if self.counter >= 270
     set self done 1
@@ -96,19 +110,26 @@ if self.counter >= 270
     set self.armsname state DOWN
 endif
 if self.xcollide == 1
-    if self.armsname.state == SWAYLEFT
+    if self.dx == 1
         set self x_vel self.speed
-        set self.armsname state SWAYRIGHT
         set self xcollide 0
+        set self dx -1
     endif
 endif
 if self.xcollide == 1
-    if self.armsname.state == SWAYRIGHT
+    if self.dx == -1
         set self x_vel self.speed * -1
-        set self.armsname state SWAYLEFT
         set self xcollide 0
+        set self dx 1
     endif
 endif
+if self.x_vel > 0
+    set self.armsname state SWAYRIGHT
+endif
+if self.x_vel < 0
+    set self.armsname state SWAYLEFT
+endif
+
 set self counter self.counter + 1
 
 |upsydownsy|
@@ -170,7 +191,7 @@ set self counter self.counter + 1
 |waveLeft|
 if self.atkcounter % 4 == 0
     set self bulname self.name + bullet + self.bulletnum
-    create spacebullet0 self.bulname self.w / 2 + self.x  self.y + self.h
+    create spacebullet0 self.bulname self.w / 2 + self.x - 8  self.y + self.h
     set self.bulname state BALL
     set self.bulname y_vel 0.5 * self.atkcounter + -20
     if self.atkcounter < 40
@@ -185,6 +206,10 @@ if self.atkcounter % 4 == 0
         set self bulletnum 0
     endif
 endif
+if self.atkcounter % 16 == 0
+    set self.armsname frame 0
+endif
+set self.armsname state THROWLEFT
 if self.atkcounter >= 80
     set self atkdone 1
 endif
@@ -193,7 +218,7 @@ set self atkcounter self.atkcounter + 1
 |waveRight|
 if self.atkcounter % 4 == 0
     set self bulname self.name + bullet + self.bulletnum
-    create spacebullet0 self.bulname self.w / 2 + self.x  self.y + self.h
+    create spacebullet0 self.bulname self.w / 2 + self.x - 8  self.y + self.h
     set self.bulname state BALL
     set self.bulname y_vel 0.5 * self.atkcounter + -20
     if self.atkcounter < 40
@@ -202,12 +227,15 @@ if self.atkcounter % 4 == 0
     if self.atkcounter >= 40
         set self.bulname x_vel self.atkcounter - 40 * -0.5 + 19
     endif
-
     set self bulletnum self.bulletnum + 1
     if self.bulletnum >= self.bulletmax
         set self bulletnum 0
     endif
 endif
+if self.atkcounter % 16 == 0
+    set self.armsname frame 0
+endif
+set self.armsname state THROWRIGHT
 if self.atkcounter >= 80
     set self atkdone 1
 endif

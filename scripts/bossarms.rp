@@ -1,12 +1,12 @@
 BOSS|0,0,0,0|False|
 START:0 bossarmsdown -16,0
 DOWN:0 bossarmsdown -16,0
-UP:0 bossarmsready -16,0
-UP:8 bossarmsup -16,32
-THROWLEFT:0 bossarmsthrowleft0 -16,16
-THROWLEFT:8 bossarmsthrowleft1 -16,0
-THROWRIGHT:0 bossarmsthrowright0 0,16
-THROWRIGHT:8 bossarmsthrowright1 0,0
+UP:0 bossarmsup -16,-32
+READY:0 bossarmsready -16,0
+THROWRIGHT:0 bossarmsthrowleft0 -24,-28
+THROWRIGHT:8 bossarmsthrowleft1 -24,0
+THROWLEFT:0 bossarmsthrowright0 -8,-28
+THROWLEFT:8 bossarmsthrowright1 -8,0
 SWAYLEFT:0 bossarmsswayleft -16,0
 SWAYRIGHT:0 bossarmsswayright -16,0
 BYE:0 empty 0,0
@@ -31,6 +31,9 @@ exec updatePosition
 exec updatePosition
 
 |SWAYRIGHT:0|
+exec updatePosition
+
+|READY:0|
 exec updatePosition
 
 |BYE:0|
