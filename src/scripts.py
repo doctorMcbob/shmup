@@ -13,6 +13,7 @@ from copy import deepcopy
 from random import randint, choice
 
 import string
+import math
 import traceback
 import sys
 
@@ -35,7 +36,8 @@ operators = {
     "nor": lambda n1, n2: n1 and not n2,
 
     "in": lambda n1, n2: n1 in n2,
-    "at": lambda n1, n2: n1[n2]
+    "at": lambda n1, n2: n1[n2],
+
 }
 
 SCRIPTS = {}
@@ -499,6 +501,14 @@ def resolve_operators(cmd, world, logfunc=print, actor=None):
                 evaluated.append(calculated)
             elif token == "range":
                 evaluated.append(list(range(int(cmd.pop(idx+1)))))
+            elif token == "sin":
+                evaluated.append(math.sin(cmd.pop(idx+1)))
+            elif token == "cos":
+                evaluated.append(math.cos(cmd.pop(idx+1)))
+            elif token == "tan":
+                evaluated.append(math.tan(cmd.pop(idx+1)))
+            elif token == "atan":
+                evaluated.append(math.atan(cmd.pop(idx+1)))
             elif type(token) == str and token in operators:
                 left, right = evaluated.pop(), cmd.pop(idx+1)
                 if token != "at":

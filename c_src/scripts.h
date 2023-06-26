@@ -61,6 +61,12 @@
 #define ABS 30
 #define RANGE 31
 #define INWORLD 32
+#define SIN 33
+#define COS 34
+#define TAN 35
+#define ASIN 36
+#define ACOS 37
+#define ATAN 38
 
 // Define Verbs
 #define QUIT 0

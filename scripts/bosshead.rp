@@ -33,6 +33,7 @@ set self movfunc choiceof self.movfuncs
 set self atkfuncs []
 add self.atkfuncs waveLeft
 add self.atkfuncs waveRight
+add self.atkfuncs circle
 set self atkfunc choiceof self.atkfuncs
 set self atkfreq 30
 set self atkctdwn 0
@@ -166,8 +167,11 @@ endif
 if self.counter == 0
     set self dx 1
     set self dy 1
-    set self x_vel self.speed
     set self y_vel self.speed
+    set self x_vel self.speed
+    if RAND?
+        set self x_vel self.speed * -1
+    endif
 endif
 if self.ycollide == 1
     set self dy self.dy * -1
@@ -240,3 +244,42 @@ if self.atkcounter >= 80
     set self atkdone 1
 endif
 set self atkcounter self.atkcounter + 1
+
+|circle|
+set self movfunc center    
+if self.atkcounter == 0
+    set self done 0
+    set self.armsname frame 0
+endif
+
+set self.armsname state SPIN
+
+if self.atkcounter % 2 == 0
+    set self bulname self.name + bullet_ + self.bulletnum
+    set self angle_offset 6.283185 // 15 * self.atkcounter
+
+    set self calc cos self.angle_offset
+    set self offx 128 * self.calc
+    set self _x self.w / 2 + self.x + self.offx
+
+    set self calc sin self.angle_offset
+    set self offy 128 * self.calc
+    set self _y self.h / 2 + self.y + self.offy
+
+    create spacebullet0 self.bulname self._x self._y
+    set self.bulname state FOLLOW
+    set self.bulname counter 300
+    set self.bulname follow self.name
+    set self.bulname offx self._x - self.x
+    set self.bulname offy self._y - self.y
+    set self bulletnum self.bulletnum + 1
+    if self.bulletnum >= self.bulletmax
+        set self bulletnum 0
+    endif
+endif
+
+set self atkcounter self.atkcounter + 1
+if self.atkcounter >= 60
+    set self atkdone 1
+    set self movfunc bounce
+endif

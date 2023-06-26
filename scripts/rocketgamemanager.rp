@@ -211,6 +211,16 @@ if exists bosspawner0.spawnname
     set bosspawner0.spawnname.bodyname state BYE
     set bosspawner0.spawnname.armsname state BYE
 endif
+for _i range bosshead0.bulletmax
+    set self _name bosspawner0.spawnname + bullet + _i
+    if exists self._name
+        set self._name state BYE
+    endif
+    set self _name bosspawner0.spawnname + bullet_ + _i
+    if exists self._name
+        set self._name state BYE
+    endif
+endfor
 
 set platformrockethudL0 x platformrockethudL0.startx
 set platformrockethudL0 y platformrockethudL0.starty

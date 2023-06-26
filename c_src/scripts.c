@@ -1765,7 +1765,110 @@ void resolve_operators(int statement, World *world, int debug) {
         PARAMS[paramPointer++] = is != NULL;
         break;
       }
+      case SIN: {
+        int rightType = BUFFER[++bufferPointer];
+        int rightValue = BUFFER[++bufferPointer];
+
+        if (rightType != INT && rightType != FLOAT) {
+          print_statement(statement);
+          printf("Cannot sin with non-number\n");
+          break;
+        }
+        if (rightType == FLOAT) {
+          rightValue = (int)get_float(rightValue);
+        }
+
+        PARAMS[paramPointer++] = FLOAT;
+        PARAMS[paramPointer++] = push_float(sin(rightValue));
+        break;
       }
+      case COS: {
+        int rightType = BUFFER[++bufferPointer];
+        int rightValue = BUFFER[++bufferPointer];
+
+        if (rightType != INT && rightType != FLOAT) {
+          print_statement(statement);
+          printf("Cannot cos with non-number\n");
+          break;
+        }
+        if (rightType == FLOAT) {
+          rightValue = (int)get_float(rightValue);
+        }
+
+        PARAMS[paramPointer++] = FLOAT;
+        PARAMS[paramPointer++] = push_float(cos(rightValue));
+        break;
+      }
+      case TAN: {
+        int rightType = BUFFER[++bufferPointer];
+        int rightValue = BUFFER[++bufferPointer];
+
+        if (rightType != INT && rightType != FLOAT) {
+          print_statement(statement);
+          printf("Cannot tan with non-number\n");
+          break;
+        }
+        if (rightType == FLOAT) {
+          rightValue = (int)get_float(rightValue);
+        }
+
+        PARAMS[paramPointer++] = FLOAT;
+        PARAMS[paramPointer++] = push_float(tan(rightValue));
+        break;
+      }
+      case ASIN: {
+        int rightType = BUFFER[++bufferPointer];
+        int rightValue = BUFFER[++bufferPointer];
+
+        if (rightType != INT && rightType != FLOAT) {
+          print_statement(statement);
+          printf("Cannot asin with non-number\n");
+          break;
+        }
+        if (rightType == FLOAT) {
+          rightValue = (int)get_float(rightValue);
+        }
+
+        PARAMS[paramPointer++] = FLOAT;
+        PARAMS[paramPointer++] = push_float(asin(rightValue));
+        break;
+      }
+      case ACOS: {
+        int rightType = BUFFER[++bufferPointer];
+        int rightValue = BUFFER[++bufferPointer];
+
+        if (rightType != INT && rightType != FLOAT) {
+          print_statement(statement);
+          printf("Cannot acos with non-number\n");
+          break;
+        }
+        if (rightType == FLOAT) {
+          rightValue = (int)get_float(rightValue);
+        }
+
+        PARAMS[paramPointer++] = FLOAT;
+        PARAMS[paramPointer++] = push_float(acos(rightValue));
+        break;
+      }
+      case ATAN: {
+        int rightType = BUFFER[++bufferPointer];
+        int rightValue = BUFFER[++bufferPointer];
+
+        if (rightType != INT && rightType != FLOAT) {
+          print_statement(statement);
+          printf("Cannot atan with non-number\n");
+          break;
+        }
+        if (rightType == FLOAT) {
+          rightValue = (int)get_float(rightValue);
+        }
+
+        PARAMS[paramPointer++] = FLOAT;
+        PARAMS[paramPointer++] = push_float(atan(rightValue));
+        break;
+      }
+      }
+
       bufferPointer++;
     } else {
       PARAMS[paramPointer++] = type;
