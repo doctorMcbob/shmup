@@ -3,10 +3,10 @@ START:0 bossarmsdown -16,0
 DOWN:0 bossarmsdown -16,0
 UP:0 bossarmsup -16,-32
 READY:0 bossarmsready -16,0
-THROWRIGHT:0 bossarmsthrowleft0 -24,-28
-THROWRIGHT:8 bossarmsthrowleft1 -24,0
-THROWLEFT:0 bossarmsthrowright0 -8,-28
-THROWLEFT:8 bossarmsthrowright1 -8,0
+THROWRIGHT:0 bossarmsthrowright0 -24,-28
+THROWRIGHT:8 bossarmsthrowright1 -24,0
+THROWLEFT:0 bossarmsthrowleft0 -8,-28
+THROWLEFT:8 bossarmsthrowleft1 -8,0
 SWAYLEFT:0 bossarmsswayleft -16,0
 SWAYRIGHT:0 bossarmsswayright -16,0
 SPIN:0 bossarmspin0 -32,-32

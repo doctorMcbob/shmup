@@ -74,6 +74,9 @@ goodbye
 |XCOLLISION|
 goodbye
 
+|YCOLLISION|
+goodbye
+
 |HIT|
 set self calc self.name == ship1
 if self.name == ship0 or self.calc
@@ -122,7 +125,6 @@ create fxhit0 self.hitname related.x related.y
 set related state BYE
 
 |updateCounter|
-set self counter self.counter - 1
-if self.counter == 0
+if self.frame >= self.counter
     set self state BYE
 endif

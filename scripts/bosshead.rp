@@ -22,7 +22,7 @@ set self atkdone 0
 set self atkcounter 0
 hurtboxes rocketboss
 hitboxes rocketboss
-set self hp 90
+set self hp 72
 set self speed 4
 set self movfuncs []
 add self.movfuncs leftright
@@ -39,6 +39,7 @@ set self atkfreq 30
 set self atkctdwn 0
 set self bulletnum 0
 set self bulletmax 80
+set self circlecounter 0
 
 |HEAD0:0|
 exec updateMovement
@@ -47,10 +48,12 @@ exec updateAttack
 |HEAD1:0|
 exec updateMovement
 exec updateAttack
+exec activateCrows
 
 |HEAD2:0|
 exec updateMovement
 exec updateAttack
+exec activateCrows
 
 |BROKE:0|
 set self.armsname state BYE
@@ -77,6 +80,9 @@ if self.done == 1
 endif
 
 |updateAttack|
+if self.circlecounter > 0
+    set self circlecounter self.circlecounter - 1
+endif
 if self.atkctdwn == 0
     exec self.atkfunc
     if self.atkdone == 1
@@ -97,6 +103,10 @@ if self.atkctdwn > 0
         set self.armsname state READY
     endif
 endif
+
+|activateCrows|
+set rocketcrowspawner0 state SPAWN
+set rocketcrowspawner1 state SPAWN
 
 |leftright|
 if self.counter == 0
@@ -246,6 +256,16 @@ endif
 set self atkcounter self.atkcounter + 1
 
 |circle|
+if self.circlecounter != 0
+    set self atkcounter 0
+    set self atkdone 0
+    set self atkfunc choiceof self.atkfuncs
+    set self atkctdwn self.atkfreq
+    if self.atkfunc == circle
+        set self atkfunc waveLeft
+    endif
+    break
+endif
 set self movfunc center    
 if self.atkcounter == 0
     set self done 0
@@ -279,7 +299,8 @@ if self.atkcounter % 2 == 0
 endif
 
 set self atkcounter self.atkcounter + 1
-if self.atkcounter >= 60
+if self.atkcounter >= 50
     set self atkdone 1
     set self movfunc bounce
+    set self circlecounter 350
 endif

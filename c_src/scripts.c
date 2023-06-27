@@ -1775,11 +1775,12 @@ void resolve_operators(int statement, World *world, int debug) {
           break;
         }
         if (rightType == FLOAT) {
-          rightValue = (int)get_float(rightValue);
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(sin(get_float(rightValue)));
+        } else {
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(sin(rightValue));
         }
-
-        PARAMS[paramPointer++] = FLOAT;
-        PARAMS[paramPointer++] = push_float(sin(rightValue));
         break;
       }
       case COS: {
@@ -1792,11 +1793,12 @@ void resolve_operators(int statement, World *world, int debug) {
           break;
         }
         if (rightType == FLOAT) {
-          rightValue = (int)get_float(rightValue);
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(cos(get_float(rightValue)));
+        } else {
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(cos(rightValue));
         }
-
-        PARAMS[paramPointer++] = FLOAT;
-        PARAMS[paramPointer++] = push_float(cos(rightValue));
         break;
       }
       case TAN: {
@@ -1809,11 +1811,12 @@ void resolve_operators(int statement, World *world, int debug) {
           break;
         }
         if (rightType == FLOAT) {
-          rightValue = (int)get_float(rightValue);
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(tan(get_float(rightValue)));
+        } else {
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(tan(rightValue));
         }
-
-        PARAMS[paramPointer++] = FLOAT;
-        PARAMS[paramPointer++] = push_float(tan(rightValue));
         break;
       }
       case ASIN: {
@@ -1826,11 +1829,12 @@ void resolve_operators(int statement, World *world, int debug) {
           break;
         }
         if (rightType == FLOAT) {
-          rightValue = (int)get_float(rightValue);
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(asin(get_float(rightValue)));
+        } else {
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(asin(rightValue));
         }
-
-        PARAMS[paramPointer++] = FLOAT;
-        PARAMS[paramPointer++] = push_float(asin(rightValue));
         break;
       }
       case ACOS: {
@@ -1843,11 +1847,12 @@ void resolve_operators(int statement, World *world, int debug) {
           break;
         }
         if (rightType == FLOAT) {
-          rightValue = (int)get_float(rightValue);
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(acos(get_float(rightValue)));
+        } else {
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(acos(rightValue));
         }
-
-        PARAMS[paramPointer++] = FLOAT;
-        PARAMS[paramPointer++] = push_float(acos(rightValue));
         break;
       }
       case ATAN: {
@@ -1860,11 +1865,12 @@ void resolve_operators(int statement, World *world, int debug) {
           break;
         }
         if (rightType == FLOAT) {
-          rightValue = (int)get_float(rightValue);
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(atan(get_float(rightValue)));
+        } else {
+          PARAMS[paramPointer++] = FLOAT;
+          PARAMS[paramPointer++] = push_float(atan(rightValue));
         }
-
-        PARAMS[paramPointer++] = FLOAT;
-        PARAMS[paramPointer++] = push_float(atan(rightValue));
         break;
       }
       }

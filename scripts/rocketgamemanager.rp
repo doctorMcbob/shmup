@@ -229,5 +229,13 @@ set platformrockethudR0 x platformrockethudR0.startx
 set platformrockethudR0 y platformrockethudR0.starty
 set platformrockethudR0 shift 0
 
+if exists rocketcrowspawner0.spawnname
+    set rocketcrowspawner0.spawnname state BYE
+endif
+if exists rocketcrowspawner1.spawnname
+    set rocketcrowspawner1.spawnname state BYE  
+endif
+
+set rockethpmanager0 state END
 set self frame 0
 set self state START

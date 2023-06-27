@@ -904,7 +904,7 @@ void draw_actor(SDL_Renderer *rend, Actor *actor, Frame *f) {
   case -90:
   case 90:
   case 0:
-    dest.x = actor->ECB.x + s->offx;
+    dest.x = actor->direction == 1 ? actor->ECB.x + actor->ECB.w - s->offx - dest.w : actor->ECB.x + s->offx;
     dest.y = actor->ECB.y + s->offy;
     break;
   case -270:
@@ -926,7 +926,7 @@ void draw_actor(SDL_Renderer *rend, Actor *actor, Frame *f) {
   double angle = 0 - actor->rotation;
   SDL_Point pivot = {dest.w / 2, dest.h / 2};
 
-  // // draw dest rect
+  // // draw dest rect ;P my favorite debug tool <3
   // SDL_SetRenderDrawColor(rend, 155, 0, 155, 255);
   // SDL_RenderDrawRect(rend, &dest);
 
