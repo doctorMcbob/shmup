@@ -92,7 +92,6 @@ if self.name == ship0 or self.calc
         set self frame 0
         set self x_vel 0
         set self y_vel 0
-
     endif
 endif
 if self.name != ship0

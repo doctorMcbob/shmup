@@ -9,8 +9,10 @@ set self state OFF
 
 |OFF:0|
 if exists bosspawner0.spawnname
-    exec activate
-    set self state ON
+    if bosspawner0.spawnname.hp > 0
+        exec activate
+        set self state ON
+    endif
 endif
 
 |END:0|
@@ -52,11 +54,13 @@ if self.value < 36
 endif
 
 |activate|
+set rockethpdisplay0 state ON
 for i_ range 12
     set rockethpbarsegment + i_ state ON
 endfor
 
 |deactivate|
+set rockethpdisplay0 state OFF
 for i_ range 12
     set rockethpbarsegment + i_ state OFF
 endfor
