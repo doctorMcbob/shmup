@@ -50,7 +50,6 @@ endif
 if self.value < 36
     set bosspawner0.spawnname state HEAD2
 endif
-print here!
 
 |activate|
 for i_ range 12
