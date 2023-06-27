@@ -112,8 +112,14 @@ if self.atkctdwn > 0
 endif
 
 |activateCrows|
-set rocketcrowspawner0 state SPAWN
-set rocketcrowspawner1 state SPAWN
+set self calc exists rocketcrowspawner0.spawnname
+if not self.calc
+    set rocketcrowspawner0 state SPAWN
+endif
+set self calc exists rocketcrowspawner1.spawnname
+if not self.calc
+    set rocketcrowspawner1 state SPAWN
+endif
 
 |leftright|
 if self.counter == 0

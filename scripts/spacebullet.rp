@@ -41,10 +41,6 @@ exec updateCounter
 exec updateCounter
 
 |BEAM:0|
-back
-exec updateCounter
-
-|BEAM:1|
 exec updateCounter
 
 |SHOT:0|

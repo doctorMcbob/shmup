@@ -162,6 +162,7 @@ endif
 |updateShot|
 if inpA
     set self calc self.level == 3
+    set self calc self.frame % 2 == 0 and self.calc
     if self.bulletcounter >= self.bulletfreq or self.calc
         exec shoot
         set self bulletcounter 0

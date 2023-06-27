@@ -120,6 +120,10 @@ exec reset
 set self skip 0
 for i_ range 10
     set self calc trianglespawner + i_
+    if self.calc.state == SPAWN
+        set self skip 1
+        break
+    endif
     set self calc self.calc.spawnname
     if exists self.calc
         set self skip 1
@@ -127,6 +131,10 @@ for i_ range 10
     endif
 
     set self calc beedleshipspawner + i_
+    if self.calc.state == SPAWN
+        set self skip 1
+        break
+    endif
     set self calc self.calc.spawnname
     if exists self.calc
         set self skip 1
@@ -136,6 +144,10 @@ endfor
 
 for i_ range 4
     set self calc destroyerspawner + i_
+    if self.calc.state == SPAWN
+        set self skip 1
+        break
+    endif
     set self calc self.calc.spawnname
     if exists self.calc
         set self skip 1
@@ -143,6 +155,9 @@ for i_ range 4
     endif
 endfor
 
+if bosspawner0.state == SPAWN
+    set self skip 1
+endif
 if exists bosspawner0.spawnname
     set self skip 1
 endif
