@@ -20,13 +20,18 @@ set self state OFF
 |ON:0|
 set self check exists bosspawner0.spawnname
 
-if not check
+if not self.check
     exec deactivate
     set self state OFF
     break
 endif
 
 set self value bosspawner0.spawnname.hp
+if self.value <= 0
+    exec deactivate
+    set self state OFF
+    break
+endif
 
 for i_ range 12
     set self target rockethpbarsegment + i_
@@ -45,6 +50,7 @@ endif
 if self.value < 36
     set bosspawner0.spawnname state HEAD2
 endif
+print here!
 
 |activate|
 for i_ range 12

@@ -16,8 +16,7 @@ set self frame 0
 exec checkRestart
 
 |PLAY0:40|
-add rocketspawnmanager0.funcs spawnBoss
-#add rocketspawnmanager0.funcs trianglesLow
+add rocketspawnmanager0.funcs trianglesLow
 exec checkRestart
 
 |PLAY0:42|

@@ -20,7 +20,7 @@ endif
 set self x_vel self.speed * self.xd
 set self y_vel self.speed * self.yd
 set self state CROW
-set self hp 12
+set self hp 5
 set self explodenum 0
 set self explodemax 8
 set self explodecounter 0
