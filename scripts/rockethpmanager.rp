@@ -37,7 +37,7 @@ for i_ range 12
             set self.target state LOW
         endif
     endif
-endif
+endfor
 
 if self.value < 38
     set bosspawner0.spawnname state HEAD1
