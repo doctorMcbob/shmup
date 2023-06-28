@@ -250,6 +250,17 @@ if exists rocketcrowspawner1.spawnname
     set rocketcrowspawner1.spawnname state BYE  
 endif
 
+set rockethudblinker0 frame 0
+set rockethudblinker1 frame 0
+set rockethudblinker2 frame 0
+set rockethudblinker3 frame 0
+set cautionsign0 frame 0
+set rockethudblinker0 state START
+set rockethudblinker1 state START
+set rockethudblinker2 state START
+set rockethudblinker3 state START
+set cautionsign0 state START
+
 set rockethpmanager0 state END
 set self frame 0
 set self state START

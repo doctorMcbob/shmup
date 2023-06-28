@@ -80,14 +80,26 @@ if self.name == ship0 or self.calc
     if related.state == SHOT or self.calc
         break
     endif
+    set rockethudblinker0 frame 0
+    set rockethudblinker1 frame 0
+    set rockethudblinker2 frame 0
+    set rockethudblinker3 frame 0
     if self.level == 0
         set self state BROKE
+        set rockethudblinker0 state DANGER
+        set rockethudblinker1 state DANGER
+        set rockethudblinker2 state DANGER
+        set rockethudblinker3 state DANGER
         set self frame 0
         set self x_vel 0
         set self y_vel 0
     endif
     if self.level != 0
         set ship0 level 0
+        set rockethudblinker0 state HIT
+        set rockethudblinker1 state HIT
+        set rockethudblinker2 state HIT
+        set rockethudblinker3 state HIT
         set self state CRASH
         set self frame 0
         set self x_vel 0

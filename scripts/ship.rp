@@ -102,6 +102,29 @@ exec explode
 if self.state == POWERUP
     set related level related.level + 1    
     set related level min related.level 3
+
+    set rockethudblinker0 frame 0
+    set rockethudblinker1 frame 0
+    set rockethudblinker2 frame 0
+    set rockethudblinker3 frame 0
+    if related.level == 1
+        set rockethudblinker0 state GREEN
+        set rockethudblinker1 state GREEN
+        set rockethudblinker2 state GRAY
+        set rockethudblinker3 state GRAY
+    endif
+    if related.level == 2
+        set rockethudblinker0 state GREEN
+        set rockethudblinker1 state GREEN
+        set rockethudblinker2 state GREEN
+        set rockethudblinker3 state GRAY
+    endif
+    if related.level == 3
+        set rockethudblinker0 state MAX
+        set rockethudblinker1 state MAX
+        set rockethudblinker2 state MAX
+        set rockethudblinker3 state MAX
+    endif
     goodbye
 endif
 
