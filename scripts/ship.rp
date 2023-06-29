@@ -17,6 +17,7 @@ FLYRIGHT:0 shipright0 0,0
 FLYRIGHT:3 shipright1 0,0
 FLYRIGHT:6 shipright2 0,0
 BROKE:0 shipbreak0 0,0
+FLYAWAY:0 shipstraight0 0,0
 
 |START:0|
 set self state WAIT
@@ -98,32 +99,47 @@ exec updateShot
 |BROKE:0|
 exec explode
 
+|FLYAWAY:0|
+set self tangible 0
+if self.x == 600
+    set self y self.y - self.speed
+endif
+if self.x < 600
+    set self x self.x + self.speed
+    set self x min self.x 600
+endif
+if self.x > 600
+    set self x self.x - self.speed
+    set self x max self.x 600
+endif
+
 |COLLIDE|
 if self.state == POWERUP
     set related level related.level + 1    
     set related level min related.level 3
-
-    set rockethudblinker0 frame 0
-    set rockethudblinker1 frame 0
-    set rockethudblinker2 frame 0
-    set rockethudblinker3 frame 0
-    if related.level == 1
-        set rockethudblinker0 state GREEN
-        set rockethudblinker1 state GREEN
-        set rockethudblinker2 state GRAY
-        set rockethudblinker3 state GRAY
-    endif
-    if related.level == 2
-        set rockethudblinker0 state GREEN
-        set rockethudblinker1 state GREEN
-        set rockethudblinker2 state GREEN
-        set rockethudblinker3 state GRAY
-    endif
-    if related.level == 3
-        set rockethudblinker0 state MAX
-        set rockethudblinker1 state MAX
-        set rockethudblinker2 state MAX
-        set rockethudblinker3 state MAX
+    if rockethudblinker0.state != START
+        set rockethudblinker0 frame 0
+        set rockethudblinker1 frame 0
+        set rockethudblinker2 frame 0
+        set rockethudblinker3 frame 0
+        if related.level == 1
+            set rockethudblinker0 state GREEN
+            set rockethudblinker1 state GREEN
+            set rockethudblinker2 state GRAY
+            set rockethudblinker3 state GRAY
+        endif
+        if related.level == 2
+            set rockethudblinker0 state GREEN
+            set rockethudblinker1 state GREEN
+            set rockethudblinker2 state GREEN
+            set rockethudblinker3 state GRAY
+        endif
+        if related.level == 3
+            set rockethudblinker0 state MAX
+            set rockethudblinker1 state MAX
+            set rockethudblinker2 state MAX
+            set rockethudblinker3 state MAX
+        endif
     endif
     goodbye
 endif

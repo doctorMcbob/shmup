@@ -37,7 +37,7 @@ endif
 
 for i_ range 12
     set self target rockethpbarsegment + i_
-    set self.target state OFF
+    set self.target state EMPTY
     if i_ * 6 < self.value
         set self.target state ON
         if i_ * 6 + 3 > self.value

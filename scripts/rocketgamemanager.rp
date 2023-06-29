@@ -112,8 +112,12 @@ exec checkRestart
 exec checkContinue
 
 |PLAY7:60|
-set ship1 state WAIT
-view ROOT root
+set ship0 state FLYAWAY
+set self state END
+set self frame 0
+
+|END:120|
+view ROOT endscene
 exec reset
 
 |checkContinue|
@@ -181,7 +185,9 @@ endif
 
 |reset|
 set bgscroller0 scroll_y 0
-
+if exists powerup0
+    set powerup0 state BYE
+endif
 set ship0 state WAIT
 set ship0 frame 0
 set ship0 x ship0.startx
@@ -190,6 +196,7 @@ set ship0 x_vel 0
 set ship0 y_vel 0
 set ship0 level 0
 set ship0 powerupcounter ship0.powerupcountermax
+set ship0 tangible 1
 
 for i_ range ship0.bulletmax
     set self _name ship0bullet + i_

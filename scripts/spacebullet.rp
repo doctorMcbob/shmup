@@ -55,6 +55,13 @@ set self frame 0
 exec updateCounter
 set self frame 0
 
+|BEAM:0|
+exec updateCounter
+back
+
+|BEAM:1|
+exec updateCounter
+
 |BEAM:6|
 exec updateCounter
 set self frame 1
@@ -75,6 +82,7 @@ goodbye
 
 |HIT|
 set self calc self.name == ship1
+set self calc self.name == ship2 or self.calc
 if self.name == ship0 or self.calc
     set self calc related.state == BEAM
     if related.state == SHOT or self.calc
@@ -86,20 +94,24 @@ if self.name == ship0 or self.calc
     set rockethudblinker3 frame 0
     if self.level == 0
         set self state BROKE
-        set rockethudblinker0 state DANGER
-        set rockethudblinker1 state DANGER
-        set rockethudblinker2 state DANGER
-        set rockethudblinker3 state DANGER
+        if rockethudblinker0.state != START
+            set rockethudblinker0 state DANGER
+            set rockethudblinker1 state DANGER
+            set rockethudblinker2 state DANGER
+            set rockethudblinker3 state DANGER
+        endif
         set self frame 0
         set self x_vel 0
         set self y_vel 0
     endif
     if self.level != 0
         set ship0 level 0
-        set rockethudblinker0 state HIT
-        set rockethudblinker1 state HIT
-        set rockethudblinker2 state HIT
-        set rockethudblinker3 state HIT
+        if rockethudblinker0.state != START
+            set rockethudblinker0 state HIT
+            set rockethudblinker1 state HIT
+            set rockethudblinker2 state HIT
+            set rockethudblinker3 state HIT
+        endif
         set self state CRASH
         set self frame 0
         set self x_vel 0
