@@ -170,10 +170,23 @@ if self.skip
     break
 endif
 
+set self thermoname thermometerpiece + self.level
+if exists self.thermoname
+    set self.thermoname frame 0
+    set self.thermoname state FULL
+endif
 set self level self.level + 1
 set self state PLAY + self.level
 set self frame 0
 set bgscroller0 scroll_y bgscroller0.scroll_y - 1
+set self thermoname thermometerpiece + self.level
+if self.level == 12
+    set self thermoname thermometerend0
+endif
+if exists self.thermoname
+    set self.thermoname frame 0
+    set self.thermoname state ACTIVE
+endif
 
 |checkRestart|
 set self calc ship0.frame > 90
@@ -262,11 +275,41 @@ set rockethudblinker1 frame 0
 set rockethudblinker2 frame 0
 set rockethudblinker3 frame 0
 set cautionsign0 frame 0
+set spaceport0 frame 0
+set thermometerbottom0 frame 0
+set thermometerpiece0 frame 0
+set thermometerpiece1 frame 0
+set thermometerpiece2 frame 0
+set thermometerpiece3 frame 0
+set thermometerpiece4 frame 0
+set thermometerpiece5 frame 0
+set thermometerpiece6 frame 0
+set thermometerpiece7 frame 0
+set thermometerpiece8 frame 0
+set thermometerpiece9 frame 0
+set thermometerpiece10 frame 0
+set thermometerpiece11 frame 0
+set thermometerend0 frame 0
 set rockethudblinker0 state START
 set rockethudblinker1 state START
 set rockethudblinker2 state START
 set rockethudblinker3 state START
 set cautionsign0 state START
+set spaceport0 state START
+set thermometerbottom0 state START
+set thermometerpiece0 state START
+set thermometerpiece1 state START
+set thermometerpiece2 state START
+set thermometerpiece3 state START
+set thermometerpiece4 state START
+set thermometerpiece5 state START
+set thermometerpiece6 state START
+set thermometerpiece7 state START
+set thermometerpiece8 state START
+set thermometerpiece9 state START
+set thermometerpiece10 state START
+set thermometerpiece11 state START
+set thermometerend0 state START
 
 set rockethpmanager0 state END
 set self frame 0
