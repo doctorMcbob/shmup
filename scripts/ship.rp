@@ -222,6 +222,24 @@ if self.level == 0
 endif
 if self.level == 1
     set self bulletname self.name + bullet + self.bulletnum
+    create spacebullet0 self.bulletname self.w / 2 + self.x - 16 self.y
+    set self.bulletname state SHOT
+    set self.bulletname y_vel self.shotspeed
+    set self bulletnum self.bulletnum + 1
+    if self.bulletnum == self.bulletmax
+        set self bulletnum 0
+    endif
+    set self bulletname self.name + bullet + self.bulletnum
+    create spacebullet0 self.bulletname self.w / 2 + self.x self.y
+    set self.bulletname state SHOT
+    set self.bulletname y_vel self.shotspeed
+    set self bulletnum self.bulletnum + 1
+    if self.bulletnum == self.bulletmax
+        set self bulletnum 0
+    endif
+endif
+if self.level == 2
+    set self bulletname self.name + bullet + self.bulletnum
     create spacebullet0 self.bulletname self.x self.y
     set self.bulletname state SHOT
     set self.bulletname y_vel self.shotspeed
@@ -239,32 +257,6 @@ if self.level == 1
     endif
     set self bulletname self.name + bullet + self.bulletnum
     create spacebullet0 self.bulletname self.w / 3 * 2 + self.x self.y
-    set self.bulletname state SHOT
-    set self.bulletname y_vel self.shotspeed
-    set self bulletnum self.bulletnum + 1
-    if self.bulletnum == self.bulletmax
-        set self bulletnum 0
-    endif
-endif
-if self.level == 2
-    set self bulletname self.name + bullet + self.bulletnum
-    create spacebullet0 self.bulletname self.x - 8 self.y
-    set self.bulletname state SHOT
-    set self.bulletname y_vel self.shotspeed
-    set self bulletnum self.bulletnum + 1
-    if self.bulletnum == self.bulletmax
-        set self bulletnum 0
-    endif
-    set self bulletname self.name + bullet + self.bulletnum
-    create spacebullet0 self.bulletname self.w / 2 + self.x - 8 self.y + 16
-    set self.bulletname state SHOT
-    set self.bulletname y_vel self.shotspeed
-    set self bulletnum self.bulletnum + 1
-    if self.bulletnum == self.bulletmax
-        set self bulletnum 0
-    endif
-    set self bulletname self.name + bullet + self.bulletnum
-    create spacebullet0 self.name + bullet + self.bulletnum self.w + self.x - 8 self.y
     set self.bulletname state SHOT
     set self.bulletname y_vel self.shotspeed
     set self bulletnum self.bulletnum + 1

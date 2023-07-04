@@ -39,7 +39,8 @@ exec checkRestart
 exec checkRestart
 
 |PLAY2:40|
-add rocketspawnmanager0.funcs destroyerMid
+add rocketspawnmanager0.funcs beedlesLow
+add rocketspawnmanager0.funcs destroyerLow
 exec checkRestart
 
 |PLAY2:42|
@@ -51,6 +52,7 @@ exec checkRestart
 
 |PLAY3:40|
 add rocketspawnmanager0.funcs trianglesMid
+add rocketspawnmanager0.funcs beedlesLow
 exec checkRestart
 
 |PLAY3:42|
@@ -73,13 +75,6 @@ exec checkRestart
 
 |PLAY4:57|
 exec checkContinue
-
-|PLAY4:60|
-add rocketspawnmanager0.funcs beedlesMid
-exec checkRestart
-
-|PLAY4:62|
-exec checkContinue
 exec checkRestart
 
 |PLAY5:0|
@@ -93,7 +88,8 @@ exec checkRestart
 exec checkRestart
 
 |PLAY5:55|
-add rocketspawnmanager0.funcs destroyerHigh
+add rocketspawnmanager0.funcs destroyerMid
+add rocketspawnmanager0.funcs beedlesLow
 exec checkRestart
 
 |PLAY5:57|
@@ -104,14 +100,98 @@ exec checkRestart
 exec checkRestart
 
 |PLAY6:40|
-add rocketspawnmanager0.funcs spawnBoss
+add rocketspawnmanager0.funcs trianglesHigh
+add rocketspawnmanager0.funcs beedlesLow
 exec checkRestart
 
 |PLAY6:42|
+exec checkContinue
+exec checkRestart
+
+|PLAY7:0|
+exec checkRestart
+
+|PLAY7:40|
+add rocketspawnmanager0.funcs beedlesHigh
+add rocketspawnmanager0.funcs trianglesMidAlt
+exec checkRestart
+
+|PLAY7:42|
+exec checkContinue
+exec checkRestart
+
+|PLAY8:0|
+exec checkRestart
+
+|PLAY8:40|
+add rocketspawnmanager0.funcs destroyerHigh
+add rocketspawnmanager0.funcs trianglesMid
+exec checkRestart
+
+|PLAY8:42|
+exec checkContinue
+exec checkRestart
+
+|PLAY9:0|
+exec checkRestart
+
+|PLAY9:40|
+add rocketspawnmanager0.funcs trianglesMid
+add rocketspawnmanager0.funcs beedlesMid
+exec checkRestart
+
+|PLAY9:42|
+exec checkRestart
+
+|PLAY9:55|
+add rocketspawnmanager0.funcs trianglesMidAlt
+exec checkRestart
+
+|PLAY9:57|
 exec checkRestart
 exec checkContinue
 
-|PLAY7:60|
+|PLAY10:0|
+exec checkRestart
+
+|PLAY10:40|
+add rocketspawnmanager0.funcs beedlesMid
+exec checkRestart
+
+|PLAY10:42|
+exec checkRestart
+
+|PLAY10:55|
+add rocketspawnmanager0.funcs destroyerHigh
+add rocketspawnmanager0.funcs trianglesMid
+exec checkRestart
+
+|PLAY10:57|
+exec checkRestart
+exec checkContinue
+
+|PLAY11:0|
+exec checkRestart
+
+|PLAY11:40|
+add rocketspawnmanager0.funcs trianglesHigh
+add rocketspawnmanager0.funcs beedlesHigh
+add rocketspawnmanager0.funcs destroyerMid
+exec checkRestart
+
+|PLAY11:42|
+exec checkContinue
+exec checkRestart
+
+|PLAY12:40|
+add rocketspawnmanager0.funcs spawnBoss
+exec checkRestart
+
+|PLAY12:42|
+exec checkRestart
+exec checkContinue
+
+|PLAY13:60|
 set ship0 state FLYAWAY
 set self state END
 set self frame 0
