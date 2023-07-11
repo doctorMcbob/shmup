@@ -39,6 +39,7 @@ LITERAL_KEYWORDS = {
     "None": 21,
     "RAND?": 6,
     "WORLD?": 7,
+    "STICKS?": 22,
     "song?": 8,
     "COLLIDE?": 9,
     "[]": 10,
@@ -137,6 +138,7 @@ VERBS = {
     "endfor": 37,
     "print": 38,
     "update_sticks": 39,
+    "setjoy": 40,
 }
 UNIQUE_FLOATS = []
 UNIQUE_STRINGS = []

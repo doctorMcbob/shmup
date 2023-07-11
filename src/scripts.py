@@ -292,6 +292,13 @@ def resolve(reference, script, world, related=None, logfunc=print):
                 world_ref = cmd.pop(0)
                 worlds.get_world(world_ref).background_yscroll += float(cmd.pop(0))
                 
+            elif verb == "setjoy":
+                input_state_name, joy_count = cmd
+                inputstate = inputs.get_state(input_state_name)
+                if inputstate is None:
+                    raise Exception("Invalid input state {}".format(input_state_name))
+                inputs.add_joystick_to_input_state(input_state_name, joy_count)
+
             elif verb == "for": # gulp
                 key = cmd.pop(0)
                 target = deepcopy(cmd.pop())
@@ -387,6 +394,8 @@ def evaluate_literals(cmd, reference, world, related=None, logfunc=print):
                 cmd[idx] = world.name
             if token == "RAND?":
                 cmd[idx] = randint(0, 1)
+            if token == "STICKS?":
+                cmd[idx] = inputs.get_num_sticks()
             if token == "song?":
                 cmd[idx] = sounds.get_song()
             if token == "COLLIDE?":

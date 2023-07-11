@@ -1912,6 +1912,7 @@ int resolve_script(int scriptIdx, Actor *self, Actor *related, World *world,
             SCRIPTS[executionPointer] != QRAND &&
             SCRIPTS[executionPointer] != QWORLD &&
             SCRIPTS[executionPointer] != QCOLLIDE &&
+            SCRIPTS[executionPointer] != QSTICKS &&
             SCRIPTS[executionPointer] != QSONG &&
             SCRIPTS[executionPointer] != INP_A &&
             SCRIPTS[executionPointer] != INP_B &&
@@ -1984,6 +1985,11 @@ int resolve_script(int scriptIdx, Actor *self, Actor *related, World *world,
       case QWORLD: {
         BUFFER[bufferPointer++] = STRING;
         BUFFER[bufferPointer++] = world->name;
+        break;
+      }
+      case QSTICKS: {
+        BUFFER[bufferPointer++] = INT;
+        BUFFER[bufferPointer++] = get_num_sticks();
         break;
       }
       case QCOLLIDE: {
@@ -3423,6 +3429,23 @@ int resolve_script(int scriptIdx, Actor *self, Actor *related, World *world,
       break;
     }
     case UPDATE_STICKS: {
+      update_sticks();
+      break;
+    }
+    case SET_JOY: {
+      int inputStateType = PARAMS[0];
+      int inputStateValue = PARAMS[1];
+      int stickType = PARAMS[2];
+      int stickValue = PARAMS[3];
+
+      if (inputStateType != STRING || stickType != INT) {
+        printf("Actor %s error: ", get_string(self->name));
+        print_statement(statement);
+        printf("Missing or Incorrect Parameter for SET_JOY\n");
+        break;
+      }
+
+      add_stick_to_input_state(inputStateValue, stickValue);
       break;
     }
     }
